@@ -16,6 +16,12 @@ class HomeController extends GetxController {
     return EmojiModel(data: emojiList[activeIndex.value]);
   }
 
+  initializeIndex() {
+    var storedData = _userService.userData;
+    print("INIT $storedData");
+    activeIndex.value = emojiList.indexOf(storedData?.data);
+  }
+
   changeActiveIndex() {
     if (activeIndex + 1 < emojiList.length) {
       activeIndex.value++;
@@ -23,12 +29,6 @@ class HomeController extends GetxController {
       activeIndex.value = 0;
     }
     print(activeIndex.value);
-  }
-
-  initializeIndex() {
-    var storedData = _userService.userData;
-    print("INIT $storedData");
-    activeIndex.value = emojiList.indexOf(storedData?.data);
   }
 
   @override

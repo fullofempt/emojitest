@@ -18,13 +18,15 @@ class UserService extends GetxService {
     return this;
   }
 
+  Future<void> saveData(EmojiModel data) async {
+    userData = data;
+    await storageService.writeSettings(data);
+  }
+
   Future<EmojiModel> getFirstAvailableEmoji() async {
     await Future.delayed(const Duration(microseconds: 500));
     return EmojiModel(data: EmojiData.emojiList.first);
   }
 
-  Future<void> saveData(EmojiModel data) async {
-    userData = data;
-    await storageService.writeSettings(data);
-  }
+  
 }
